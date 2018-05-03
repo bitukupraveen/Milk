@@ -6,32 +6,32 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <button ion-button menuToggle>
+    <ion-navbar>
+        <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{item.itemName}}</ion-title>
-  </ion-navbar>
+        <ion-title>{{item.itemName}}</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label floating>Item Name</ion-label>
-      <ion-input type="text" [(ngModel)]="item.itemName"></ion-input>
-    </ion-item>
+    <ion-list>
+        <ion-item>
+            <ion-label floating>Item Name</ion-label>
+            <ion-input type="text" [(ngModel)]="item.itemName"></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label floating>Item Description</ion-label>
-      <ion-input type="text" [(ngModel)]="item.itemDescription"></ion-input>
-    </ion-item>
+        <ion-item>
+            <ion-label floating>Item Description</ion-label>
+            <ion-input type="text" [(ngModel)]="item.itemDescription"></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label floating>Item Number</ion-label>
-      <ion-input type="number" [(ngModel)]="item.itemNumber"></ion-input>
-    </ion-item>
-  </ion-list>
-  <button ion-button block color="primary" (click)="EditItem(item)">Edit Item</button>
+        <ion-item>
+            <ion-label floating>Item Number</ion-label>
+            <ion-input type="number" [(ngModel)]="item.itemNumber"></ion-input>
+        </ion-item>
+    </ion-list>
+    <button ion-button block color="primary" (click)="EditItem(item)">Update Item</button>
 </ion-content>

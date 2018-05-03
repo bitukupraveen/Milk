@@ -22,6 +22,8 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+
+    
   }
 
     onLogout() {
@@ -31,6 +33,9 @@ export class MyApp {
 
     goToLoginPage(){
         this.nav.setRoot('LoginPage');
+    }
+    goToTtemsPage(){
+        this.nav.setRoot('ItemsListPage'); 
     }
 }
 

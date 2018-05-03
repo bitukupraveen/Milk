@@ -11,6 +11,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
 
+
 @NgModule({
   declarations: [
     MyApp

@@ -16,10 +16,15 @@
                 <ion-icon name="person" item-start></ion-icon>
                 Items List (CRUD)
             </button>
+            <button *ngIf="authProvider.user | async" menuClose ion-item icon-start (click)="goToCustomersPage()">
+                <ion-icon name="person" item-start></ion-icon>
+                Customers List
+            </button>
             <button *ngIf="authProvider.user | async" menuClose ion-item icon-start (click)="onLogout()">
                 <ion-icon name="person" item-start></ion-icon>
                 Logout
             </button>
+
 
         </ion-list>
     </ion-content>

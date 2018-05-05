@@ -11,11 +11,11 @@ export class MyApp {
     @ViewChild(Nav) nav: Nav;
   rootPage:any = 'LoginPage';
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private authProvider: AuthProvider) {
-      this.authProvider.getAuthState().subscribe(data => {
-          if (data && data.email && data.uid) {
-              this.nav.setRoot('ItemsListPage');
-          }
-      });
+    //   this.authProvider.getAuthState().subscribe(data => {
+    //       if (data && data.email && data.uid) {
+    //           this.nav.setRoot('ItemsListPage');
+    //       }
+    //   });
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -30,12 +30,15 @@ export class MyApp {
         this.authProvider.logout();
         this.nav.setRoot('LoginPage');
     }
-
+    
     goToLoginPage(){
         this.nav.setRoot('LoginPage');
     }
     goToTtemsPage(){
         this.nav.setRoot('ItemsListPage'); 
+    }
+    goToCustomersPage(){
+        this.nav.setRoot('CustomerListPage'); 
     }
 }
 

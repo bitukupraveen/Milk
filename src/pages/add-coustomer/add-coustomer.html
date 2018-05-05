@@ -1,0 +1,39 @@
+<!--
+  Generated template for the AddItemPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+      <ion-title>Add Coustomer</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+      <ion-item>
+          <ion-label floating>Name</ion-label>
+          <ion-input type="text" [(ngModel)]="coustomer.Name" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Number</ion-label>
+        <ion-input type="number" [(ngModel)]="coustomer.Number" ></ion-input>
+    </ion-item>
+      <ion-item>
+          <ion-label floating>Description</ion-label>
+          <ion-input type="text" [(ngModel)]="coustomer.Description"></ion-input>
+      </ion-item>
+
+  
+  </ion-list>
+  <button ion-button block color="primary" (click)="saveCoustomer(coustomer)">Add Coustomer</button>
+
+</ion-content>

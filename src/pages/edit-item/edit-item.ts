@@ -42,8 +42,8 @@ export class EditItemPage {
     EditItem(item: Item) {
         const promise =  this.itemRef$.update({
             itemName: item.itemName,
-            itemDescription: item.itemDescription,
-            itemNumber: Number(item.itemNumber),
+            itemVariant:  Number(item.itemVariant),
+            itemPrice: Number(item.itemPrice),
         });
         promise
             .then(_ => {

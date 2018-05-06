@@ -25,8 +25,8 @@
   <ion-list>
       <ion-item (click)="selectItem(item)" *ngFor="let item of itemsRef$ | async">
         <h2>{{item.itemName}}</h2>
-        <p>{{item.itemDescription}}</p>
-        <ion-badge item-end>{{item.itemNumber}}</ion-badge>
+        <p>{{item.itemVariant}}ml</p>
+        <ion-badge item-end>Rs. {{item.itemPrice}}</ion-badge>
       </ion-item>
   </ion-list>
 </ion-content>

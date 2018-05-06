@@ -24,13 +24,13 @@
         </ion-item>
 
         <ion-item>
-            <ion-label floating>Item Description</ion-label>
-            <ion-input type="text" [(ngModel)]="item.itemDescription"></ion-input>
+            <ion-label floating>Item Variant</ion-label>
+            <ion-input type="number" [(ngModel)]="item.itemVariant"></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-label floating>Item Number</ion-label>
-            <ion-input type="number" [(ngModel)]="item.itemNumber"></ion-input>
+            <ion-label floating>Item Price</ion-label>
+            <ion-input type="number" [(ngModel)]="item.itemPrice"></ion-input>
         </ion-item>
     </ion-list>
     <button ion-button block color="primary" (click)="EditItem(item)">Update Item</button>

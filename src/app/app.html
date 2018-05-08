@@ -9,19 +9,23 @@
         <p text-center>{{authProvider.userDetails ? 'Welcome ' + authProvider.userDetails.email : ''}}</p>
         <ion-list>
             <button *ngIf="!(authProvider.user | async)" menuClose ion-item icon-start (click)="goToLoginPage()">
-                <ion-icon name="person" item-start></ion-icon>
+                <ion-icon name="md-log-in" item-start></ion-icon>
                 Login
+            </button>
+            <button *ngIf="!(authProvider.user | async)" menuClose ion-item icon-start (click)="goToRegisterPage()">
+                <ion-icon name="person" item-start></ion-icon>
+                Register
             </button>
             <button *ngIf="authProvider.user | async" menuClose ion-item icon-start (click)="goToTtemsPage()">
                 <ion-icon name="person" item-start></ion-icon>
                 Items List 
             </button>
             <button *ngIf="authProvider.user | async" menuClose ion-item icon-start (click)="goToCustomersPage()">
-                <ion-icon name="person" item-start></ion-icon>
+                <ion-icon name="contacts" item-start></ion-icon>
                 Customers List
             </button>
             <button *ngIf="authProvider.user | async" menuClose ion-item icon-start (click)="onLogout()">
-                <ion-icon name="person" item-start></ion-icon>
+                <ion-icon name="md-log-out" item-start></ion-icon>
                 Logout
             </button>
 

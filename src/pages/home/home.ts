@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {  IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import {Coustomer} from '../../models/coustomer/coustomer.interface';
 
 /**
  * Generated class for the HomePage page.
@@ -15,9 +17,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  coustomerRef$: FirebaseListObservable<Coustomer[]>;
 
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private database: AngularFireDatabase
+              ) {
+    this.coustomerRef$ = this.database.list('coustomers');
+
+              }
+        
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }

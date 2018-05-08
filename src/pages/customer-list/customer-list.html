@@ -23,14 +23,15 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item (click)="selectCoustomer(coustomer)" *ngFor="let coustomer of coustomerRef$ | async">
+    <ion-item  *ngFor="let coustomer of coustomerRef$ | async">
       <ion-thumbnail item-start>
         <img src="../../assets/images/thumbnail.png">
       </ion-thumbnail>
       <h2>{{coustomer.Name}}</h2>
       <p>{{coustomer.Number}}</p>
       <p>{{coustomer.Description}}</p>
-      <button ion-button clear item-end>View</button>
+      <button ion-button clear item-end (click)="selectCoustomer(coustomer)">Edit</button>
+      <button ion-button clear item-end (click)="addTodayItems(coustomer)">Add</button>
     </ion-item>
   </ion-list>
 </ion-content>

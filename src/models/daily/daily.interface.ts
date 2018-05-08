@@ -1,4 +1,4 @@
-export interface Item{
+export interface Daily{
     $key?: string,
     itemName: string,
     itemVariant: number,

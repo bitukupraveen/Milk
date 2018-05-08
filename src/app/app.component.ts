@@ -40,5 +40,8 @@ export class MyApp {
     goToCustomersPage(){
         this.nav.setRoot('CustomerListPage'); 
     }
+    goToRegisterPage(){
+        this.nav.setRoot('RegisterPage'); 
+    }
 }
 

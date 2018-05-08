@@ -34,7 +34,7 @@ export class MyApp {
     goToLoginPage(){
         this.nav.setRoot('LoginPage');
     }
-    goToTtemsPage(){
+    goToItemsPage(){
         this.nav.setRoot('ItemsListPage'); 
     }
     goToCustomersPage(){
@@ -42,6 +42,9 @@ export class MyApp {
     }
     goToRegisterPage(){
         this.nav.setRoot('RegisterPage'); 
+    }
+    goTohomePage(){
+        this.nav.setRoot('HomePage');
     }
 }
 

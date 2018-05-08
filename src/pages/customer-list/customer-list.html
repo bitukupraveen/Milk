@@ -6,31 +6,31 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <button ion-button menuToggle>
+    <ion-navbar>
+        <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Customers List</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="goToAddCoustomerPage()" >
-        <ion-icon name="add" ></ion-icon>
+        <ion-title>Customers List</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="goToAddCoustomerPage()">
+        <ion-icon name="md-person-add" ></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item (click)="selectCoustomer(coustomer)" *ngFor="let coustomer of coustomerRef$ | async">
-      <ion-thumbnail item-start>
-        <img src="../../assets/images/thumbnail.png">
-      </ion-thumbnail>
-      <h2>{{coustomer.Name}}</h2>
-      <p>{{coustomer.Number}}</p>
-      <p>{{coustomer.Description}}</p>
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-  </ion-list>
+    <ion-list>
+        <ion-item (click)="selectCoustomer(coustomer)" *ngFor="let coustomer of coustomerRef$ | async">
+            <ion-thumbnail item-start>
+                <img src="../../assets/images/thumbnail.png">
+            </ion-thumbnail>
+            <h2>{{coustomer.Name}}</h2>
+            <p>{{coustomer.Number}}</p>
+            <p>{{coustomer.Description}}</p>
+            <button ion-button clear item-end>View</button>
+        </ion-item>
+    </ion-list>
 </ion-content>

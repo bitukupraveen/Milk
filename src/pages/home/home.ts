@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {  IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {Coustomer} from '../../models/coustomer/coustomer.interface';
+import {Item} from '../../models/item/item.interface';
 
 /**
  * Generated class for the HomePage page.
@@ -18,13 +19,14 @@ import {Coustomer} from '../../models/coustomer/coustomer.interface';
 export class HomePage {
 
   coustomerRef$: FirebaseListObservable<Coustomer[]>;
+  itemsRef$: FirebaseListObservable<Item[]>;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private database: AngularFireDatabase
               ) {
     this.coustomerRef$ = this.database.list('coustomers');
-
+    this.itemsRef$ = this.database.list('items');
               }
         
   ionViewDidLoad() {

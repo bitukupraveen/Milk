@@ -1,6 +1,6 @@
 export interface Item{
     $key?: string,
     itemName: string,
-    itemVariant: number
+    itemVariant: number,
     itemPrice: number
 }

@@ -15,6 +15,7 @@
             <button ion-button icon-only (click)="goToAddCoustomerPage()">
         <ion-icon name="md-person-add" ></ion-icon>
       </button>
+
         </ion-buttons>
     </ion-navbar>
 
@@ -23,7 +24,7 @@
 
 <ion-content padding>
     <ion-list>
-        <ion-item  *ngFor="let coustomer of coustomerRef$ | async">
+        <ion-item *ngFor="let coustomer of coustomerRef$ | async">
             <ion-thumbnail item-start>
                 <img src="../../assets/images/thumbnail.png">
             </ion-thumbnail>
@@ -31,6 +32,7 @@
             <p>{{coustomer.Number}}</p>
             <p>{{coustomer.Description}}</p>
             <button ion-button clear item-end (click)="selectCoustomer(coustomer)">View</button>
+            <button ion-button clear item-end (click)="addDaily(coustomer)">Add</button>
         </ion-item>
     </ion-list>
 </ion-content>

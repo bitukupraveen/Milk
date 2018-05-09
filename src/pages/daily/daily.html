@@ -1,0 +1,46 @@
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+        <ion-title>{{coustomer.Name}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label floating> coustomer Id</ion-label>
+            <ion-input type="text" [(ngModel)]="daily.coustomerId" value="{{coustomer.$key}}"></ion-input>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+
+        <ion-item>
+            <ion-label floating> Name</ion-label>
+            <ion-input type="text" [(ngModel)]="daily.itemName"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating> Price</ion-label>
+            <ion-input type="number" [(ngModel)]="daily.itemPrice"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating> Quantity</ion-label>
+            <ion-input type="number" [(ngModel)]="daily.itemQuantity"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating> Variant</ion-label>
+            <ion-input type="text" [(ngModel)]="daily.itemVariant"></ion-input>
+        </ion-item>
+        <ion-item *ngFor="let item of itemsRef$ | async">
+            <h2>{{item.itemName}}</h2>
+            <p>{{item.itemVariant}}ml</p>
+            <ion-badge item-end>Rs. {{item.itemPrice}}</ion-badge>
+        </ion-item>
+
+    </ion-list>
+    <button ion-button block color="primary" (click)="saveDaily(daily)">Update Item</button>
+</ion-content>

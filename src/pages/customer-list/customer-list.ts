@@ -26,6 +26,13 @@ export class CustomerListPage {
               ) {
     this.coustomerRef$ = this.database.list('coustomers');
   }
+  // Add daily
+  addDaily(coustomer: Coustomer){
+    this.navCtrl.push('DailyPage', {
+        coustomerId: coustomer.$key
+      })
+  }
+
   selectCoustomer(coustomer: Coustomer){
     console.log(coustomer.Name);
 

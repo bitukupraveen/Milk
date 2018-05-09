@@ -30,8 +30,8 @@
                     </ion-card-header>
                     <ion-icon name="person" class="icon-size-20" item-start></ion-icon>
                     <ion-card-content>
-                     
-                        <ion-badge>260k</ion-badge>
+
+                        <ion-badge>{{ (coustomerRef$ | async)?.length }} Coustomers</ion-badge>
                     </ion-card-content>
                 </ion-card>
             </ion-col>
@@ -42,7 +42,7 @@
                     </ion-card-header>
                     <ion-icon name="list" class="icon-size-20" item-start></ion-icon>
                     <ion-card-content>
-                        <ion-badge>260k</ion-badge>
+                        <ion-badge>{{ (itemsRef$ | async)?.length }} Products</ion-badge>
                     </ion-card-content>
                 </ion-card>
             </ion-col>

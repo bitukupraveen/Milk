@@ -41,8 +41,10 @@ export class DailyPage {
     })
     this.dailyRef$ = this.database.list('daily');
     this.itemsRef$ = this.database.list('items');
+    
   }
-
+  
+  myDate: String = new Date().toISOString();
 
 
   saveDaily(daily: Daily) {

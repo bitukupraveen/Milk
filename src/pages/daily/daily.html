@@ -18,7 +18,11 @@
         </ion-item>
     </ion-list>
     <ion-list>
+        <ion-item>
+            <ion-label>Start Date</ion-label>
+            <ion-datetime displayFormat="YYYY MM DD " [(ngModel)]="myDate"></ion-datetime>
 
+        </ion-item>
         <ion-item>
             <ion-label floating> Name</ion-label>
             <ion-input type="text" [(ngModel)]="daily.itemName"></ion-input>

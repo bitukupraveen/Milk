@@ -18,11 +18,7 @@
         </ion-item>
     </ion-list>
     <ion-list>
-        <ion-item>
-            <ion-label>Start Date</ion-label>
-            <ion-datetime displayFormat="YYYY MM DD " [(ngModel)]="myDate"></ion-datetime>
 
-        </ion-item>
         <ion-item>
             <ion-label floating> Name</ion-label>
             <ion-input type="text" [(ngModel)]="daily.itemName"></ion-input>
@@ -39,11 +35,17 @@
             <ion-label floating> Variant</ion-label>
             <ion-input type="text" [(ngModel)]="daily.itemVariant"></ion-input>
         </ion-item>
+
+
+    </ion-list>
+    <ion-list>
+
         <ion-item *ngFor="let item of itemsRef$ | async">
-            <h2>{{item.itemName}}</h2>
-            <p>{{item.itemVariant}}ml</p>
-            <ion-badge item-end>Rs. {{item.itemPrice}}</ion-badge>
+            <ion-label>{{item.itemName}} {{item.itemVariant}}ml Rs. {{item.itemPrice}}</ion-label>
+            <ion-checkbox></ion-checkbox>
         </ion-item>
+
+
 
     </ion-list>
     <button ion-button block color="primary" (click)="saveDaily(daily)">Update Item</button>

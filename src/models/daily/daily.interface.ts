@@ -4,5 +4,6 @@ export interface Daily{
     itemVariant: string,
     itemPrice: number,
     itemQuantity: number,
-    coustomerId: string
+    coustomerId: string,
+    todayDate: string
 }

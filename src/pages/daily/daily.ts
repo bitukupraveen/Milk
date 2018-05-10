@@ -39,12 +39,20 @@ export class DailyPage {
     this.coustomerSubscription = this.coustomerRef$.subscribe(coustomer => {
       this.coustomer = coustomer;
     })
-    this.dailyRef$ = this.database.list('daily');
+    
     this.itemsRef$ = this.database.list('items');
+   // const myDate: String = new Date().toISOString();
+    var currentDate = new Date()
+    var day = currentDate.getDate()
+    var month = currentDate.getMonth() + 1
+    var year = currentDate.getFullYear()
+    var myDate = year + "-" + month + "-" + day
+
+    this.dailyRef$ = this.database.list('daily/'+myDate+'/'+`${coustomerId}`);
     
   }
   
-  myDate: String = new Date().toISOString();
+  
 
 
   saveDaily(daily: Daily) {
@@ -56,7 +64,8 @@ export class DailyPage {
       itemVariant: daily.itemVariant,
       itemPrice: Number(daily.itemPrice),
       itemQuantity: Number(daily.itemQuantity),
-      coustomerId: daily.coustomerId
+      coustomerId: daily.coustomerId,
+      todayDate: new Date().toISOString()
       
     });
     promise

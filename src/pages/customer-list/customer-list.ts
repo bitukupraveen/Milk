@@ -32,7 +32,11 @@ export class CustomerListPage {
         coustomerId: coustomer.$key
       })
   }
-
+  listDaily(coustomer: Coustomer){
+    this.navCtrl.push('DailyListPage', {
+        coustomerId: coustomer.$key
+      })
+  }
   selectCoustomer(coustomer: Coustomer){
     console.log(coustomer.Name);
 

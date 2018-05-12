@@ -52,14 +52,36 @@ export class DailyPage {
     
   }
   
-  saveItem(x){
-    this.itemsRef$.forEach(element => { 
-     
-    });
+  saveItem(item){
+    var currentDate = new Date()
+    var day = currentDate.getDate()
+    var month = currentDate.getMonth() + 1
+    var year = currentDate.getFullYear()
+    var myDate = year + "-" + month + "-" + day
+
+ console.log(item)
+ const coustomerId = this.navParams.get('coustomerId');
+ const promise =  this.dailyRef$.push({
+  itemKey: item.$key,
+  itemName: item.itemName,
+  itemVariant: item.itemVariant,
+  itemPrice: Number(item.itemPrice),
+  itemQuantity: Number(item.itemQuantity),
+  coustomerId: coustomerId,
+  todayDate: myDate
+  
+});
+promise
+    .then(_ => {
+        console.log('Added Item');
+        this.daily = {} as Daily;
+        this.navCtrl.pop();
+    } )
+    .catch(err => console.log(err, 'Error Adding Coustomer'));
   }
 
 
-  saveDaily(daily: Daily) {
+  /* saveDaily(daily: Daily) {
     console.log(daily);
 
 
@@ -82,7 +104,7 @@ export class DailyPage {
 
 
 
-}
+} */
 ionViewDidLoad() {
   this.coustomerSubscription.unsubscribe();
 }

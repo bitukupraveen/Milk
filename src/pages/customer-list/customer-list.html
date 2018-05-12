@@ -31,8 +31,9 @@
             <h2>{{coustomer.Name}}</h2>
             <p>{{coustomer.Number}}</p>
             <p>{{coustomer.Description}}</p>
-            <button ion-button clear item-end (click)="selectCoustomer(coustomer)">View</button>
+            <button ion-button clear item-end (click)="selectCoustomer(coustomer)"><ion-icon name="create"></ion-icon></button>
             <button ion-button clear item-end (click)="addDaily(coustomer)">Add</button>
+            <button ion-button clear item-end (click)="listDaily(coustomer)">View</button>
         </ion-item>
     </ion-list>
 </ion-content>

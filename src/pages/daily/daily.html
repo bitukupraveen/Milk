@@ -11,61 +11,16 @@
 
 
 <ion-content padding>
-    <ion-list>
-        <ion-item>
-            <ion-label floating> coustomer Id</ion-label>
-            <ion-input type="text" [(ngModel)]="daily.coustomerId" value="{{coustomer.$key}}"></ion-input>
-        </ion-item>
-       
-    </ion-list>
-    <ion-list>
-
-        <ion-item>
-            <ion-label floating> Name</ion-label>
-            <ion-input type="text" [(ngModel)]="daily.itemName"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label floating> Price</ion-label>
-            <ion-input type="number" [(ngModel)]="daily.itemPrice"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label floating> Quantity</ion-label>
-            <ion-input type="number" [(ngModel)]="daily.itemQuantity"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label floating> Variant</ion-label>
-            <ion-input type="text" [(ngModel)]="daily.itemVariant"></ion-input>
-        </ion-item>
-
-
-
-
-    </ion-list>
-    <button ion-button block color="primary" (click)="saveDaily(daily)">Update Item</button>
-
+  
+   
     <ion-grid>
         <ion-row *ngFor="let item of itemsRef$ | async" >
-            <ion-col col-8>
+            <ion-col col-10>
                 <ion-label>{{item.itemName}} {{item.itemVariant}}ml Rs. {{item.itemPrice}}</ion-label>
             </ion-col>
+            
             <ion-col col-2>
-                <button ion-button color="light" icon-only>
-                    <ion-icon name='add'></ion-icon>
-                </button>
-
-                <button ion-button color="light" icon-only>
-                    <ion-icon>1</ion-icon>
-                </button>
-
-                <button ion-button color="light" icon-only>
-                    <ion-icon name='add'></ion-icon>
-                </button>
-
-
-
-            </ion-col>
-            <ion-col col-2>
-                <button ion-button item-end style="float: right;" (click)="saveItem(item.$key)">Add</button>
+                <button ion-button item-end style="float: right;" (click)="saveItem(item)">Add</button>
             </ion-col>
         </ion-row>
 

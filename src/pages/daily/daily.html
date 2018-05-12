@@ -2,8 +2,8 @@
 
     <ion-navbar>
         <button ion-button menuToggle>
-    <ion-icon name="menu"></ion-icon>
-  </button>
+            <ion-icon name="menu"></ion-icon>
+        </button>
         <ion-title>{{coustomer.Name}}</ion-title>
     </ion-navbar>
 
@@ -16,6 +16,7 @@
             <ion-label floating> coustomer Id</ion-label>
             <ion-input type="text" [(ngModel)]="daily.coustomerId" value="{{coustomer.$key}}"></ion-input>
         </ion-item>
+       
     </ion-list>
     <ion-list>
 
@@ -37,16 +38,39 @@
         </ion-item>
 
 
-    </ion-list>
-    <ion-list>
-
-        <ion-item *ngFor="let item of itemsRef$ | async">
-            <ion-label>{{item.itemName}} {{item.itemVariant}}ml Rs. {{item.itemPrice}}</ion-label>
-            <ion-checkbox></ion-checkbox>
-        </ion-item>
-
 
 
     </ion-list>
     <button ion-button block color="primary" (click)="saveDaily(daily)">Update Item</button>
+
+    <ion-grid>
+        <ion-row *ngFor="let item of itemsRef$ | async" >
+            <ion-col col-8>
+                <ion-label>{{item.itemName}} {{item.itemVariant}}ml Rs. {{item.itemPrice}}</ion-label>
+            </ion-col>
+            <ion-col col-2>
+                <button ion-button color="light" icon-only>
+                    <ion-icon name='add'></ion-icon>
+                </button>
+
+                <button ion-button color="light" icon-only>
+                    <ion-icon>1</ion-icon>
+                </button>
+
+                <button ion-button color="light" icon-only>
+                    <ion-icon name='add'></ion-icon>
+                </button>
+
+
+
+            </ion-col>
+            <ion-col col-2>
+                <button ion-button item-end style="float: right;" (click)="saveItem(item.$key)">Add</button>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+
+
 </ion-content>

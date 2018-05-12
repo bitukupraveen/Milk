@@ -52,7 +52,11 @@ export class DailyPage {
     
   }
   
-  
+  saveItem(x){
+    this.itemsRef$.forEach(element => { 
+     
+    });
+  }
 
 
   saveDaily(daily: Daily) {

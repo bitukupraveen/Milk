@@ -28,7 +28,7 @@ export class DailyPage {
   itemsRef$: FirebaseListObservable<Item[]>;
 
    coustomerSubscription: Subscription;
-
+   qty:any;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private database: AngularFireDatabase
@@ -49,9 +49,19 @@ export class DailyPage {
     var myDate = year + "-" + month + "-" + day
 
     this.dailyRef$ = this.database.list('daily/'+myDate+'/'+`${coustomerId}`);
-    
+    this.qty = 1;
+  }
+  // increment product qty
+incrementQty(item : any) {
+  item.itemQuantity++;
   }
   
+  // decrement product qty
+  decrementQty(item : any) {
+    if(item.itemQuantity > 0) {
+      item.itemQuantity--;
+    }
+}
   saveItem(item){
     var currentDate = new Date()
     var day = currentDate.getDate()
@@ -67,6 +77,7 @@ export class DailyPage {
   itemVariant: item.itemVariant,
   itemPrice: Number(item.itemPrice),
   itemQuantity: Number(item.itemQuantity),
+  itemTotalPrice: Number(item.itemQuantity) * Number(item.itemPrice),
   coustomerId: coustomerId,
   todayDate: myDate
   

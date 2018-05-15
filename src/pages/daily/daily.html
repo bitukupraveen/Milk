@@ -11,14 +11,21 @@
 
 
 <ion-content padding>
-  
-   
+
+
     <ion-grid>
-        <ion-row *ngFor="let item of itemsRef$ | async" >
-            <ion-col col-10>
+        <ion-row *ngFor="let item of itemsRef$ | async">
+            <ion-col col-6>
                 <ion-label>{{item.itemName}} {{item.itemVariant}}ml Rs. {{item.itemPrice}}</ion-label>
             </ion-col>
-            
+            <ion-col col-4>
+                <ion-buttons>
+                    <button ion-button (click)="decrementQty(item)">   <ion-icon name="remove-circle" class="decrement" ></ion-icon></button>
+                    <button ion-button outline>   {{item.itemQuantity}}  </button>
+                    <button ion-button (click)="incrementQty(item)">  <ion-icon name="add-circle" class="increment" ></ion-icon></button>
+                </ion-buttons>
+            </ion-col>
+
             <ion-col col-2>
                 <button ion-button item-end style="float: right;" (click)="saveItem(item)">Add</button>
             </ion-col>

@@ -20,6 +20,7 @@ import {Subscription} from 'rxjs/Subscription';
 export class DailyListPage {
   coustomer = {} as Coustomer;
   coustomerRef$ : FirebaseObjectObservable<Coustomer>;
+  dailyRef$ : FirebaseObjectObservable<Coustomer>;
   coustomerSubscription: Subscription;
 
   constructor(public navCtrl: NavController,
@@ -29,6 +30,8 @@ export class DailyListPage {
 
     const coustomerId = this.navParams.get('coustomerId');
     this.coustomerRef$ = this.database.object(`coustomers/${coustomerId}`);
+    this.dailyRef$ = this.database.object('daily');
+  
 
     this.coustomerSubscription = this.coustomerRef$.subscribe(coustomer => {
       this.coustomer = coustomer;

@@ -37,8 +37,9 @@ export class AddItemPage {
 
         const promise =  this.itemsRef$.push({
             itemName: item.itemName,
-            itemVariant:  Number(item.itemVariant),
+            itemVariant:  item.itemVariant,
             itemPrice: Number(item.itemPrice),
+            itemQuantity: 1,
         });
         promise
             .then(_ => {

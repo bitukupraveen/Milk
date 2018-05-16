@@ -49,7 +49,6 @@ export class DailyPage {
     var myDate = year + "-" + month + "-" + day
 
     this.dailyRef$ = this.database.list('daily/'+myDate+'/'+`${coustomerId}`);
-    this.qty = 1;
   }
   // increment product qty
 incrementQty(item : any) {
@@ -58,7 +57,7 @@ incrementQty(item : any) {
   
   // decrement product qty
   decrementQty(item : any) {
-    if(item.itemQuantity > 0) {
+    if(item.itemQuantity > 1) {
       item.itemQuantity--;
     }
 }

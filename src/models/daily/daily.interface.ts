@@ -1,7 +1,10 @@
 export interface Daily{
     $key?: string,
     itemName: string,
-    itemVariant: number,
+    itemVariant: string,
     itemPrice: number,
-    itemQuantity: number
+    itemQuantity: number,
+    itemSubTotal:number,
+    coustomerId: string,
+    todayDate: string
 }

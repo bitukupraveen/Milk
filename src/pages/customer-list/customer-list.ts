@@ -26,22 +26,16 @@ export class CustomerListPage {
               ) {
     this.coustomerRef$ = this.database.list('coustomers');
   }
-  addTodayItems(coustomer: Coustomer){
-    console.log(coustomer.Name);
-
-    this.actionSheetCtrl.create({
-        title: `${coustomer.Name}`,
-        buttons: [
-            {
-                text: 'Add',
-                handler: () => {
-                    console.log('Add clicked');
-                    this.navCtrl.push('DailyPage', {
-                      coustomerId: coustomer.$key
-                    })
-                }
-            }]
-        }).present();
+  // Add daily
+  addDaily(coustomer: Coustomer){
+    this.navCtrl.push('DailyPage', {
+        coustomerId: coustomer.$key
+      })
+  }
+  listDaily(coustomer: Coustomer){
+    this.navCtrl.push('DailyListPage', {
+        coustomerId: coustomer.$key
+      })
   }
   selectCoustomer(coustomer: Coustomer){
     console.log(coustomer.Name);

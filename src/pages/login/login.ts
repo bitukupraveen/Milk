@@ -46,17 +46,6 @@ export class LoginPage {
         }
     }
 
-    async register(user: User) {
-        console.log("Register:", user);
-        try {
-            const result = await this.authProvider.register(user);
-            if (result) {
-                this.navCtrl.setRoot('ItemsListPage');
-            }
-        } catch (e) {
-            // console.error(e);
-            this.error = e;
-        }
-    }
+  
 
 }

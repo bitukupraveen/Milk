@@ -9,7 +9,7 @@ import {AuthProvider} from '../providers/auth/auth';
 })
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
-  rootPage:any = 'LoginPage';
+  rootPage:any = 'HomePage';
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private authProvider: AuthProvider) {
     //   this.authProvider.getAuthState().subscribe(data => {
     //       if (data && data.email && data.uid) {
@@ -34,7 +34,7 @@ export class MyApp {
     goToLoginPage(){
         this.nav.setRoot('LoginPage');
     }
-    goToTtemsPage(){
+    goToItemsPage(){
         this.nav.setRoot('ItemsListPage'); 
     }
     goToCustomersPage(){
@@ -42,6 +42,9 @@ export class MyApp {
     }
     goToRegisterPage(){
         this.nav.setRoot('RegisterPage'); 
+    }
+    goTohomePage(){
+        this.nav.setRoot('HomePage');
     }
 }
 

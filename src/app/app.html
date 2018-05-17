@@ -16,8 +16,12 @@
                 <ion-icon name="person" item-start></ion-icon>
                 Register
             </button>
-            <button *ngIf="authProvider.user | async" menuClose ion-item icon-start (click)="goToTtemsPage()">
-                <ion-icon name="person" item-start></ion-icon>
+            <button *ngIf="authProvider.user | async" menuClose ion-item icon-start (click)="goTohomePage()">
+                <ion-icon name="home" item-start></ion-icon>
+                Home
+            </button>
+            <button *ngIf="authProvider.user | async" menuClose ion-item icon-start (click)="goToItemsPage()">
+                <ion-icon name="list" item-start></ion-icon>
                 Items List 
             </button>
             <button *ngIf="authProvider.user | async" menuClose ion-item icon-start (click)="goToCustomersPage()">

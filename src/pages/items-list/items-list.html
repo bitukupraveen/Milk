@@ -6,28 +6,27 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <button ion-button menuToggle>
+    <ion-navbar>
+        <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Items List</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only  (click)="goToAddItemPage()">
+        <ion-title>Items List</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="goToAddItemPage()">
         <ion-icon name="add"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
-      <ion-item (click)="selectItem(item)" *ngFor="let item of itemsRef$ | async">
-        <h2>{{item.itemName}}</h2>
-        <p>{{item.itemVariant}}ml</p>
-        <ion-badge item-end>Rs. {{item.itemPrice}}</ion-badge>
-        <ion-badge item-end> {{item.itemQuantity}}</ion-badge>
-      </ion-item>
-  </ion-list>
+    <ion-list>
+        <ion-item (click)="selectItem(item)" *ngFor="let item of itemsRef$ | async">
+            <h2>{{item.itemName}}</h2>
+            <p>{{item.itemVariant}}</p>
+            <ion-badge item-end>Rs. {{item.itemPrice}}</ion-badge>
+        </ion-item>
+    </ion-list>
 </ion-content>

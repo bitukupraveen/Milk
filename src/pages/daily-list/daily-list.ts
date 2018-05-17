@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Coustomer} from '../../models/coustomer/coustomer.interface';
-
-import {AngularFireDatabase, FirebaseObjectObservable} from 'angularfire2/database';
+import {Daily} from '../../models/daily/daily.interface';
+import {AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable} from 'angularfire2/database';
 import {Subscription} from 'rxjs/Subscription';
 
 /**
@@ -20,7 +20,7 @@ import {Subscription} from 'rxjs/Subscription';
 export class DailyListPage {
   coustomer = {} as Coustomer;
   coustomerRef$ : FirebaseObjectObservable<Coustomer>;
-  dailyRef$ : FirebaseObjectObservable<Coustomer>;
+  dailyRef$ : FirebaseListObservable<Daily[]>;
   coustomerSubscription: Subscription;
 
   constructor(public navCtrl: NavController,
@@ -30,7 +30,7 @@ export class DailyListPage {
 
     const coustomerId = this.navParams.get('coustomerId');
     this.coustomerRef$ = this.database.object(`coustomers/${coustomerId}`);
-    this.dailyRef$ = this.database.object('daily');
+    this.dailyRef$ = this.database.list('daily/'+coustomerId);
   
 
     this.coustomerSubscription = this.coustomerRef$.subscribe(coustomer => {

@@ -10,31 +10,35 @@
         <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
       </button>
-        <ion-title>{{coustomer.Name}}</ion-title>
+        <ion-title>{{coustomer.Name}} {{coustomer.$key }}</ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-list>
-        <ion-list-header>Comedy</ion-list-header>
-        <ion-item>Airplane!</ion-item>
-        <ion-item>Caddyshack</ion-item>
-        <ion-item>Coming To America</ion-item>
-    </ion-list>
 
-    <ion-list>
-        <ion-list-header>Action</ion-list-header>
-        <ion-item>Terminator II</ion-item>
-        <ion-item>The Empire Strikes Back</ion-item>
-        <ion-item>Blade Runner</ion-item>
-    </ion-list>
 
-    <ion-list>
-        <ion-list-header>Horror</ion-list-header>
-        <ion-item>The Evil Dead</ion-item>
-        <ion-item>Poldergeist</ion-item>
-        <ion-item>Aliens</ion-item>
-    </ion-list>
+    <ion-grid fixed>
+
+
+        <ion-list>
+
+            <ion-item *ngFor="let daily of dailyRef$ | async">
+                <h1>{{ daily.itemName }} </h1>
+                <h3>{{ daily.itemVariant }}</h3>
+                <p>{{ daily.itemPrice }} x {{ daily.itemQuantity }} = {{ daily.itemSubTotal }} </p>
+                <button ion-button clear item-end><ion-icon name="trash"></ion-icon>
+                </button>
+
+            </ion-item>
+
+        </ion-list>
+        <ion-list>
+            <ion-list-header>sd</ion-list-header>
+        </ion-list>
+    </ion-grid>
+
+
+
 </ion-content>

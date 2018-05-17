@@ -38,12 +38,13 @@ export class EditItemPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditItemPage');
   }
-
+  
     EditItem(item: Item) {
         const promise =  this.itemRef$.update({
             itemName: item.itemName,
             itemVariant:  item.itemVariant,
             itemPrice: Number(item.itemPrice),
+            itemQuantity: Number(item.itemQuantity),
         });
         promise
             .then(_ => {

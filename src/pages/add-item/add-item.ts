@@ -34,12 +34,12 @@ export class AddItemPage {
     saveItem(item: Item) {
         console.log(item);
 
-
+        
         const promise =  this.itemsRef$.push({
             itemName: item.itemName,
             itemVariant:  item.itemVariant,
             itemPrice: Number(item.itemPrice),
-            itemQuantity: 1,
+            itemQuantity: Number(item.itemQuantity),
         });
         promise
             .then(_ => {

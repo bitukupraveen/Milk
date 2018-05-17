@@ -33,6 +33,10 @@
             <ion-label floating>Item Price</ion-label>
             <ion-input type="number" [(ngModel)]="item.itemPrice"></ion-input>
         </ion-item>
+        <ion-item>
+                <ion-label floating>Item Quantity</ion-label>
+                <ion-input type="number" [(ngModel)]="item.itemQuantity"></ion-input>
+            </ion-item>
     </ion-list>
     <button ion-button block color="primary" (click)="saveItem(item)">Add Item</button>
 

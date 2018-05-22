@@ -40,7 +40,7 @@ export class DailyPage {
     })
     
     this.itemsRef$ = this.database.list('items');
-   // const myDate: String = new Date().toISOString();
+   //const myDate: String = new Date().toISOString();
     // var currentDate = new Date()
     // var day = currentDate.getDate()
     // var month = currentDate.getMonth() + 1
@@ -48,7 +48,7 @@ export class DailyPage {
     // var myDate = year + "-" + month + "-" + day
 
 
-    this.dailyRef$ = this.database.list('daily/'+`${coustomerId}`);
+    this.dailyRef$ = this.database.list('daily/'+`${coustomerId}`)
   }
   // increment product qty
 incrementQty(item : any) {
@@ -71,6 +71,7 @@ incrementQty(item : any) {
  console.log(item)
  const coustomerId = this.navParams.get('coustomerId');
  const promise =  this.dailyRef$.push({
+  //const promise = this.database.object('daily/'+`${coustomerId}`+"/"+myDate+"/2").set({
   itemKey: item.$key,
   itemName: item.itemName,
   itemVariant: item.itemVariant,

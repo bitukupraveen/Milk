@@ -20,18 +20,24 @@
 
 
     <ion-grid fixed>
-
+        <div>{{myDate}}</div>
 
         <ion-list>
 
-            <ion-item *ngFor="let daily of dailyRef$ | async">
+            <ion-item *ngFor="let daily of dailyRef$ |  async ">
+
+                <ion-title>{{daily.todayDate}}</ion-title>
                 <h1>{{ daily.itemName }} </h1>
                 <h3>{{ daily.itemVariant }}</h3>
                 <p>{{ daily.itemPrice }} x {{ daily.itemQuantity }} = {{ daily.itemSubTotal }} </p>
                 <button ion-button clear item-end><ion-icon name="trash"></ion-icon>
-                </button>
+                        </button>
+
+
+
 
             </ion-item>
+
 
         </ion-list>
         <ion-list>

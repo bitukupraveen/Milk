@@ -22,20 +22,30 @@ export class DailyListPage {
   coustomerRef$ : FirebaseObjectObservable<Coustomer>;
   dailyRef$ : FirebaseListObservable<Daily[]>;
   coustomerSubscription: Subscription;
-
+  myDate;
+  newdate;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private database: AngularFireDatabase
   ) {
 
+    
+
+    var currentDate = new Date()
+    var day = currentDate.getDate()
+    var month = currentDate.getMonth() + 1
+    var year = currentDate.getFullYear()
+    //var myDate = year + "-" + month + "-" + day
+    this.myDate = year + "-" + month + "-" + day
     const coustomerId = this.navParams.get('coustomerId');
     this.coustomerRef$ = this.database.object(`coustomers/${coustomerId}`);
-    this.dailyRef$ = this.database.list('daily/'+coustomerId);
+    this.dailyRef$ = this.database.list('daily/'+`${coustomerId}`);
   
 
     this.coustomerSubscription = this.coustomerRef$.subscribe(coustomer => {
       this.coustomer = coustomer;
     })
+
   }
 
   ionViewDidLoad() {

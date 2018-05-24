@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Coustomer} from '../../models/coustomer/coustomer.interface';
-import {Daily} from '../../models/daily/daily.interface';
-import {AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable} from 'angularfire2/database';
-import {Subscription} from 'rxjs/Subscription';
+import { Coustomer } from '../../models/coustomer/coustomer.interface';
+import { Daily } from '../../models/daily/daily.interface';
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
+import { Subscription } from 'rxjs/Subscription';
+
 
 /**
  * Generated class for the DailyListPage page.
@@ -19,37 +20,59 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class DailyListPage {
   coustomer = {} as Coustomer;
-  coustomerRef$ : FirebaseObjectObservable<Coustomer>;
-  dailyRef$ : FirebaseListObservable<Daily[]>;
+  coustomerRef$: FirebaseObjectObservable<Coustomer>;
+  dailyRef$: FirebaseListObservable<Daily[]>;
   coustomerSubscription: Subscription;
-  myDate;
-  newdate;
+  public months: any = [];
+  public daywise: any = [];
+  public items: any = [];
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private database: AngularFireDatabase
+    public navParams: NavParams,
+    private database: AngularFireDatabase
   ) {
 
-    
 
-    var currentDate = new Date()
-    var day = currentDate.getDate()
-    var month = currentDate.getMonth() + 1
-    var year = currentDate.getFullYear()
-    //var myDate = year + "-" + month + "-" + day
-    this.myDate = year + "-" + month + "-" + day
+
+
     const coustomerId = this.navParams.get('coustomerId');
     this.coustomerRef$ = this.database.object(`coustomers/${coustomerId}`);
-    this.dailyRef$ = this.database.list('daily/'+`${coustomerId}`);
-  
+    this.dailyRef$ = this.database.list('daily/' + `${coustomerId}`);
+    this.items = this.dailyRef$;
+
 
     this.coustomerSubscription = this.coustomerRef$.subscribe(coustomer => {
       this.coustomer = coustomer;
     })
+    this.months = [
+      { 'Date': '2018-5-21' },
+      { 'Date': '2018-5-22' },
+      { 'Date': '2018-5-23' },
+      { 'Date': '2018-5-24' }
+    ]
+
+
 
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DailyListPage');
-  }
+    this
+      .items
+      .forEach(item => {
+
+        item.forEach(x => {
+
+         this.daywise.push(x.todayDate);
+        })
+      })
+
+      this.daywise.forEach(x => {
+
+        console.log(x)
+       })
+
+
+}
 
 }

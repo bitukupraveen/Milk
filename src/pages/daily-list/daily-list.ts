@@ -23,7 +23,8 @@ export class DailyListPage {
   coustomerRef$: FirebaseObjectObservable<Coustomer>;
   dailyRef$: FirebaseListObservable<Daily[]>;
   coustomerSubscription: Subscription;
-  public months: any = [];
+  // public months: any = [];
+  public filteredData: any = [];
   public daywise: any = [];
   public items: any = [];
   constructor(public navCtrl: NavController,
@@ -43,12 +44,13 @@ export class DailyListPage {
     this.coustomerSubscription = this.coustomerRef$.subscribe(coustomer => {
       this.coustomer = coustomer;
     })
-    this.months = [
-      { 'Date': '2018-5-21' },
-      { 'Date': '2018-5-22' },
-      { 'Date': '2018-5-23' },
-      { 'Date': '2018-5-24' }
-    ]
+    // this.months = [
+    //   { 'Date': '2018-5-21' },
+    //   { 'Date': '2018-5-22' },
+    //   { 'Date': '2018-5-23' },
+    //   { 'Date': '2018-5-24' },
+    //   { 'Date': '2018-5-25' }
+    // ]
 
 
 
@@ -66,12 +68,18 @@ export class DailyListPage {
          this.daywise.push(x.todayDate);
         })
       })
-
-      this.daywise.forEach(x => {
-
-        console.log(x)
-       })
-
+       let map = new Map();
+       for (var element of this.daywise) {
+         map.set(element, element);
+       }
+       
+       
+       map.forEach( (value, key, map) => {
+         this.filteredData.push(value);
+       });
+       
+       // Print filtered data
+       console.log(this.filteredData);
 
 }
 

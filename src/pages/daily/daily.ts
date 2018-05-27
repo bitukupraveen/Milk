@@ -48,7 +48,7 @@ export class DailyPage {
     // var myDate = year + "-" + month + "-" + day
 
 
-    this.dailyRef$ = this.database.list('daily/'+`${coustomerId}`)
+    this.dailyRef$ = this.database.list('daily')
   }
   // increment product qty
 incrementQty(item : any) {

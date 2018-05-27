@@ -23,10 +23,11 @@ export class DailyListPage {
   coustomerRef$: FirebaseObjectObservable<Coustomer>;
   dailyRef$: FirebaseListObservable<Daily[]>;
   coustomerSubscription: Subscription;
-  // public months: any = [];
+  public months: any = [];
   public filteredData: any = [];
   public daywise: any = [];
   public items: any = [];
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private database: AngularFireDatabase
@@ -37,20 +38,34 @@ export class DailyListPage {
 
     const coustomerId = this.navParams.get('coustomerId');
     this.coustomerRef$ = this.database.object(`coustomers/${coustomerId}`);
-    this.dailyRef$ = this.database.list('daily/' + `${coustomerId}`);
-    this.items = this.dailyRef$;
+    this.dailyRef$ = this.database.list('daily');
+    this
+      .dailyRef$
+      .forEach(item => {
+        item.forEach(x => {
+
+          if (x.coustomerId == coustomerId) {
+            this.daywise.push(x);
+            this.months.push(x.todayDate);
+          }
+
+        })
+
+      })
+    console.log(this.months)
+
+    let map = new Map();
+    for (var element of this.months) {
+      map.set(element, element);
+    }
 
 
+    map.forEach((value, key, map) => {
+      this.filteredData.push(value);
+    });
     this.coustomerSubscription = this.coustomerRef$.subscribe(coustomer => {
       this.coustomer = coustomer;
     })
-    // this.months = [
-    //   { 'Date': '2018-5-21' },
-    //   { 'Date': '2018-5-22' },
-    //   { 'Date': '2018-5-23' },
-    //   { 'Date': '2018-5-24' },
-    //   { 'Date': '2018-5-25' }
-    // ]
 
 
 
@@ -59,8 +74,9 @@ export class DailyListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DailyListPage');
-    this
-      .items
+
+    /* this
+      .dailyRef$
       .forEach(item => {
 
         item.forEach(x => {
@@ -68,6 +84,10 @@ export class DailyListPage {
          this.daywise.push(x.todayDate);
         })
       })
+
+      let unique = this.daywise.concat(this.daywise).filter((obj, key, array) => array.map((obj2) => obj !== obj2));
+      console.log(unique)
+      
        let map = new Map();
        for (var element of this.daywise) {
          map.set(element, element);
@@ -79,8 +99,8 @@ export class DailyListPage {
        });
        
        // Print filtered data
-       console.log(this.filteredData);
+       console.log(this.filteredData); */
 
-}
+  }
 
 }

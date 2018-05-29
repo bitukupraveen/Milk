@@ -1,0 +1,42 @@
+<!--
+  Generated template for the PaymentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{coustomer.Name}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid fixed>
+
+        <ion-list>
+
+            <ion-item>
+                <ion-label floating>Item Price</ion-label>
+                <ion-input type="number" [(ngModel)]="payment.money"></ion-input>
+            </ion-item>
+
+        </ion-list>
+        <button ion-button block color="primary" (click)="savePayment(payment)">Add Item</button>
+        <ion-list>
+            <ion-item-divider>Horror</ion-item-divider>
+            <ion-item *ngFor="let payment of paymentRef$| async" [ngClass]="payment.paymentStatus">
+                <span>{{payment.paymentDate}} {{payment.paymentDate}} {{payment.money}}</span>
+            </ion-item>
+
+        </ion-list>
+
+
+
+    </ion-grid>
+</ion-content>

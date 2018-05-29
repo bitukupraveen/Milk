@@ -20,6 +20,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class DailyListPage {
   coustomer = {} as Coustomer;
+  daily = []
   coustomerRef$: FirebaseObjectObservable<Coustomer>;
   dailyRef$: FirebaseListObservable<Daily[]>;
   coustomerSubscription: Subscription;
@@ -39,7 +40,19 @@ export class DailyListPage {
     const coustomerId = this.navParams.get('coustomerId');
     this.coustomerRef$ = this.database.object(`coustomers/${coustomerId}`);
     this.dailyRef$ = this.database.list('daily');
-    this
+
+     this.dailyRef$.subscribe(daily => {
+      this.daily = daily;
+      this.daily.forEach(x => {
+
+        if (x.coustomerId == coustomerId) {
+          this.daywise.push(x);
+          this.months.push(x.todayDate);
+        }
+
+      })
+    })
+/*     this
       .dailyRef$
       .forEach(item => {
         item.forEach(x => {
@@ -51,8 +64,8 @@ export class DailyListPage {
 
         })
 
-      })
-    console.log(this.months)
+      }) */
+    console.log(this.daily)
 
     let map = new Map();
     for (var element of this.months) {

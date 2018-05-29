@@ -22,7 +22,7 @@ export class DailyPage {
 
   coustomer = {} as Coustomer;
   daily = { } as Daily;
-
+  public daywise: any = [];
   coustomerRef$ : FirebaseObjectObservable<Coustomer>;
   dailyRef$ : FirebaseListObservable<Daily[]>;
   itemsRef$: FirebaseListObservable<Item[]>;
@@ -38,17 +38,27 @@ export class DailyPage {
     this.coustomerSubscription = this.coustomerRef$.subscribe(coustomer => {
       this.coustomer = coustomer;
     })
+    var currentDate = new Date()
+    var day = currentDate.getDate()
+    var month = currentDate.getMonth() + 1
+    var year = currentDate.getFullYear()
+    var myDate = year + "-" + month + "-" + day
     
     this.itemsRef$ = this.database.list('items');
-   //const myDate: String = new Date().toISOString();
-    // var currentDate = new Date()
-    // var day = currentDate.getDate()
-    // var month = currentDate.getMonth() + 1
-    // var year = currentDate.getFullYear()
-    // var myDate = year + "-" + month + "-" + day
+     this.dailyRef$ = this.database.list('daily');
+     this
+     .dailyRef$
+     .forEach(item => {
+       item.forEach(x => {
 
+         if ((x.coustomerId == coustomerId) && (x.todayDate == myDate) )  {
+           this.daywise.push(x.itemKey);
+         }
 
-    this.dailyRef$ = this.database.list('daily')
+       })
+
+     })
+    // console.log(this.daywise)
   }
   // increment product qty
 incrementQty(item : any) {
@@ -68,7 +78,7 @@ incrementQty(item : any) {
     var year = currentDate.getFullYear()
     var myDate = year + "-" + month + "-" + day
 
- console.log(item)
+
  const coustomerId = this.navParams.get('coustomerId');
  const promise =  this.dailyRef$.push({
   //const promise = this.database.object('daily/'+`${coustomerId}`+"/"+myDate+"/2").set({

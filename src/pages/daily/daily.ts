@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Coustomer} from '../../models/coustomer/coustomer.interface';
 import {Daily} from '../../models/daily/daily.interface';
 import {Item} from '../../models/item/item.interface';
+import {Payment} from '../../models/payment/payment.interface';
 import {AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable} from 'angularfire2/database';
 import {Subscription} from 'rxjs/Subscription';
 
@@ -22,11 +23,12 @@ export class DailyPage {
 
   coustomer = {} as Coustomer;
   daily = { } as Daily;
+ public itemTotal:number = 0;
   public daywise: any = [];
   coustomerRef$ : FirebaseObjectObservable<Coustomer>;
   dailyRef$ : FirebaseListObservable<Daily[]>;
   itemsRef$: FirebaseListObservable<Item[]>;
-
+  paymentRef$ : FirebaseListObservable<Payment[]>;
    coustomerSubscription: Subscription;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -44,16 +46,23 @@ export class DailyPage {
     var year = currentDate.getFullYear()
     var myDate = year + "-" + month + "-" + day
     
+    this.paymentRef$ = this.database.list('payment');
     this.itemsRef$ = this.database.list('items');
      this.dailyRef$ = this.database.list('daily');
      this
      .dailyRef$
-     .forEach(item => {
+     .subscribe(item => {
        item.forEach(x => {
-
          if ((x.coustomerId == coustomerId) && (x.todayDate == myDate) )  {
            this.daywise.push(x.itemKey);
          }
+
+         if ((x.coustomerId == coustomerId) && (x.todayDate == myDate) )  {
+        
+          this.itemTotal += x.itemSubTotal
+           console.log(this.itemTotal)
+        }
+       
 
        })
 

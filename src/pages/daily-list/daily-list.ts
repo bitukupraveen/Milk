@@ -65,7 +65,7 @@ export class DailyListPage {
         })
 
       }) */
-    console.log(this.daily)
+    //console.log(this.daily)
 
     let map = new Map();
     for (var element of this.months) {

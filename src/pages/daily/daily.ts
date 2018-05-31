@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Coustomer} from '../../models/coustomer/coustomer.interface';
-import {Daily} from '../../models/daily/daily.interface';
-import {Item} from '../../models/item/item.interface';
-import {Payment} from '../../models/payment/payment.interface';
-import {AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable} from 'angularfire2/database';
-import {Subscription} from 'rxjs/Subscription';
+import { Coustomer } from '../../models/coustomer/coustomer.interface';
+import { Daily } from '../../models/daily/daily.interface';
+import { Item } from '../../models/item/item.interface';
+import { Payment } from '../../models/payment/payment.interface';
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
+import { Subscription } from 'rxjs/Subscription';
 
 /**
  * Generated class for the DailyPage page.
@@ -22,20 +22,23 @@ import {Subscription} from 'rxjs/Subscription';
 export class DailyPage {
 
   coustomer = {} as Coustomer;
-  daily = { } as Daily;
- public itemTotal:number = 0;
+  daily = {} as Daily;
+  public itemTotal: number = 0;
+  public paymentkey: string = "";
   public daywise: any = [];
-  coustomerRef$ : FirebaseObjectObservable<Coustomer>;
-  dailyRef$ : FirebaseListObservable<Daily[]>;
+  coustomerRef$: FirebaseObjectObservable<Coustomer>;
+
+  dailyRef$: FirebaseListObservable<Daily[]>;
   itemsRef$: FirebaseListObservable<Item[]>;
-  paymentRef$ : FirebaseListObservable<Payment[]>;
-   coustomerSubscription: Subscription;
+  paymentRef$: FirebaseListObservable<Payment[]>;
+  coustomerSubscription: Subscription;
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private database: AngularFireDatabase
+    public navParams: NavParams,
+    private database: AngularFireDatabase
   ) {
     const coustomerId = this.navParams.get('coustomerId');
     this.coustomerRef$ = this.database.object(`coustomers/${coustomerId}`);
+
 
     this.coustomerSubscription = this.coustomerRef$.subscribe(coustomer => {
       this.coustomer = coustomer;
@@ -45,42 +48,36 @@ export class DailyPage {
     var month = currentDate.getMonth() + 1
     var year = currentDate.getFullYear()
     var myDate = year + "-" + month + "-" + day
-    
+
     this.paymentRef$ = this.database.list('payment');
     this.itemsRef$ = this.database.list('items');
-     this.dailyRef$ = this.database.list('daily');
-     this
-     .dailyRef$
-     .subscribe(item => {
-       item.forEach(x => {
-         if ((x.coustomerId == coustomerId) && (x.todayDate == myDate) )  {
-           this.daywise.push(x.itemKey);
-         }
-
-         if ((x.coustomerId == coustomerId) && (x.todayDate == myDate) )  {
-        
-          this.itemTotal += x.itemSubTotal
-           console.log(this.itemTotal)
+    this.dailyRef$ = this.database.list('daily');
+    this.dailyRef$.subscribe(item => {
+      item.forEach(x => {
+        if ((x.coustomerId == coustomerId) && (x.todayDate == myDate)) {
+              this.daywise.push(x.itemKey);
+    
+          this.itemTotal = x.itemSubTotal
+          console.log(this.itemTotal)
         }
-       
 
-       })
+      })
 
-     })
+    })
     // console.log(this.daywise)
   }
   // increment product qty
-incrementQty(item : any) {
-  item.itemQuantity++;
+  incrementQty(item: any) {
+    item.itemQuantity++;
   }
-  
+
   // decrement product qty
-  decrementQty(item : any) {
-    if(item.itemQuantity > 1) {
+  decrementQty(item: any) {
+    if (item.itemQuantity > 1) {
       item.itemQuantity--;
     }
-}
-  saveItem(item){
+  }
+  saveItem(item) {
     var currentDate = new Date()
     var day = currentDate.getDate()
     var month = currentDate.getMonth() + 1
@@ -88,26 +85,60 @@ incrementQty(item : any) {
     var myDate = year + "-" + month + "-" + day
 
 
- const coustomerId = this.navParams.get('coustomerId');
- const promise =  this.dailyRef$.push({
-  //const promise = this.database.object('daily/'+`${coustomerId}`+"/"+myDate+"/2").set({
-  itemKey: item.$key,
-  itemName: item.itemName,
-  itemVariant: item.itemVariant,
-  itemPrice: Number(item.itemPrice),
-  itemQuantity: Number(item.itemQuantity),
-  itemSubTotal: Number(item.itemQuantity) * Number(item.itemPrice),
-  coustomerId: coustomerId,
-  todayDate: myDate
-  
-});
-promise
-    .then(_ => {
+    const coustomerId = this.navParams.get('coustomerId');
+    const promise = this.dailyRef$.push({
+      //const promise = this.database.object('daily/'+`${coustomerId}`+"/"+myDate+"/2").set({
+      itemKey: item.$key,
+      itemName: item.itemName,
+      itemVariant: item.itemVariant,
+      itemPrice: Number(item.itemPrice),
+      itemQuantity: Number(item.itemQuantity),
+      itemSubTotal: Number(item.itemQuantity) * Number(item.itemPrice),
+      coustomerId: coustomerId,
+      todayDate: myDate
+
+    });
+    promise
+      .then(_ => {
         console.log('Added Item');
+        var isItemExists = false;
+ 
+        this.paymentRef$.subscribe(payment => {
+          payment.forEach(x => {
+            if ((x.coustomerId == coustomerId) && (x.paymentDate == myDate)) {
+              isItemExists = true;
+              this.paymentkey = x.$key;
+              console.log(this.paymentkey)
+            }
+
+          })
+
+        })
+
+       /*  if (!isItemExists) {
+          console.log('new');
+          this.paymentRef$.push({
+            coustomerId: coustomerId,
+            paymentDate: myDate,
+            money: Number(this.itemTotal),
+            paymentStatus: "Pay"
+          });
+        } 
+        if (isItemExists) {
+          console.log('old');
+          this.database.object(`payment/${this.paymentkey}`).update({
+            coustomerId: coustomerId,
+            paymentDate: myDate,
+            money: Number(this.itemTotal),
+            paymentStatus: "Pay"
+        });
+        
+        } */
         this.daily = {} as Daily;
         this.navCtrl.pop();
-    } )
-    .catch(err => console.log(err, 'Error Adding Coustomer'));
+
+      })
+      .catch(err => console.log(err, 'Error Adding Coustomer'));
   }
 
 
@@ -135,7 +166,7 @@ promise
 
 
 } */
-ionViewDidLoad() {
-  this.coustomerSubscription.unsubscribe();
-}
+  ionViewDidLoad() {
+    this.coustomerSubscription.unsubscribe();
+  }
 }

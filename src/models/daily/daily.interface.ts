@@ -6,5 +6,6 @@ export interface Daily{
     itemQuantity: number,
     itemSubTotal:number,
     coustomerId: string,
-    todayDate: string
+    todayDate: string,
+    itemKey : string
 }

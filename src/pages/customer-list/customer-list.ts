@@ -37,6 +37,11 @@ export class CustomerListPage {
         coustomerId: coustomer.$key
       })
   }
+  paymentDaily(coustomer: Coustomer){
+    this.navCtrl.push('PaymentPage', {
+        coustomerId: coustomer.$key
+      })
+  }
   selectCoustomer(coustomer: Coustomer){
     console.log(coustomer.Name);
 

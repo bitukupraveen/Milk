@@ -10,7 +10,7 @@
         <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
       </button>
-        <ion-title>{{coustomer.Name}} {{coustomer.$key }}</ion-title>
+        <ion-title>{{coustomer.Name}}</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -22,21 +22,49 @@
     <ion-grid fixed>
 
 
-        <ion-list>
 
-            <ion-item *ngFor="let daily of dailyRef$ | async">
-                <h1>{{ daily.itemName }} </h1>
-                <h3>{{ daily.itemVariant }}</h3>
-                <p>{{ daily.itemPrice }} x {{ daily.itemQuantity }} = {{ daily.itemSubTotal }} </p>
-                <button ion-button clear item-end><ion-icon name="trash"></ion-icon>
-                </button>
 
-            </ion-item>
+       <ion-list *ngFor="let month of  filteredData; let i = index">
 
+            <ion-item-divider>
+
+                {{month}} </ion-item-divider>
+            <div *ngFor="let daily of daywise ">
+                <ion-item *ngIf="month==daily.todayDate;">
+
+
+                    <h2>{{ daily.itemName }} </h2>
+                    <h3>{{ daily.itemVariant }}</h3>
+                    <p>{{ daily.itemPrice }} x {{ daily.itemQuantity }} = {{ daily.itemSubTotal }} </p>
+                    <button ion-button clear item-end><ion-icon name="trash"></ion-icon>
+                                            </button>
+
+
+                </ion-item>
+            </div>
         </ion-list>
-        <ion-list>
-            <ion-list-header>sd</ion-list-header>
-        </ion-list>
+
+       <!--  <ion-list >
+
+           
+            <div *ngFor="let daily of daywise">
+                <ion-item>
+
+
+                    <h2>{{ daily.itemName }} </h2>
+                    <h3>{{ daily.itemVariant }}</h3>
+                    <p>{{ daily.itemPrice }} x {{ daily.itemQuantity }} = {{ daily.itemSubTotal }} </p>
+                    <button ion-button clear item-end><ion-icon name="trash"></ion-icon>
+                                            </button>
+
+
+                </ion-item>
+            </div>
+        </ion-list> -->
+
+
+
+
     </ion-grid>
 
 

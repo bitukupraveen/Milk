@@ -23,7 +23,7 @@ export class DailyPage {
 
   coustomer = {} as Coustomer;
   daily = {} as Daily;
-  public itemTotal: number = 0;
+ // public itemTotal: number = 0;
   public paymentkey: string = "";
   public daywise: any = [];
   coustomerRef$: FirebaseObjectObservable<Coustomer>;
@@ -57,8 +57,8 @@ export class DailyPage {
         if ((x.coustomerId == coustomerId) && (x.todayDate == myDate)) {
               this.daywise.push(x.itemKey);
     
-          this.itemTotal = x.itemSubTotal
-          console.log(this.itemTotal)
+         // this.itemTotal = x.itemSubTotal
+         // console.log(this.itemTotal)
         }
 
       })
@@ -102,38 +102,41 @@ export class DailyPage {
       .then(_ => {
         console.log('Added Item');
         var isItemExists = false;
+        var itemTotal = 0;
  
         this.paymentRef$.subscribe(payment => {
           payment.forEach(x => {
             if ((x.coustomerId == coustomerId) && (x.paymentDate == myDate)) {
               isItemExists = true;
               this.paymentkey = x.$key;
-              console.log(this.paymentkey)
+              itemTotal = x.money+ Number(item.itemQuantity) * Number(item.itemPrice);
+
             }
 
           })
 
         })
-
-       /*  if (!isItemExists) {
+console.log(isItemExists)
+        if (!isItemExists) {
+           itemTotal = 0;
+          itemTotal = Number(item.itemQuantity) * Number(item.itemPrice);
           console.log('new');
           this.paymentRef$.push({
             coustomerId: coustomerId,
             paymentDate: myDate,
-            money: Number(this.itemTotal),
+            money: Number(itemTotal),
             paymentStatus: "Pay"
           });
-        } 
-        if (isItemExists) {
+        } else {
           console.log('old');
           this.database.object(`payment/${this.paymentkey}`).update({
             coustomerId: coustomerId,
             paymentDate: myDate,
-            money: Number(this.itemTotal),
+            money: Number(itemTotal),
             paymentStatus: "Pay"
         });
         
-        } */
+        }
         this.daily = {} as Daily;
         this.navCtrl.pop();
 

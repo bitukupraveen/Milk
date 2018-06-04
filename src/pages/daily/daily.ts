@@ -56,9 +56,7 @@ export class DailyPage {
       item.forEach(x => {
         if ((x.coustomerId == coustomerId) && (x.todayDate == myDate)) {
               this.daywise.push(x.itemKey);
-    
-         // this.itemTotal = x.itemSubTotal
-         // console.log(this.itemTotal)
+
         }
 
       })
@@ -83,9 +81,9 @@ export class DailyPage {
     var month = currentDate.getMonth() + 1
     var year = currentDate.getFullYear()
     var myDate = year + "-" + month + "-" + day
-
-
     const coustomerId = this.navParams.get('coustomerId');
+
+   
     const promise = this.dailyRef$.push({
       //const promise = this.database.object('daily/'+`${coustomerId}`+"/"+myDate+"/2").set({
       itemKey: item.$key,

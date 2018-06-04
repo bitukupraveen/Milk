@@ -18,21 +18,41 @@
 
 <ion-content padding>
     <ion-grid fixed>
+        <ion-row>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label floating>Add money</ion-label>
+                    <ion-input type="number" [(ngModel)]="payment.money"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col col-6><button ion-button block color="primary" (click)="savePayment(payment)">Add money</button></ion-col>
+        </ion-row>
+
 
         <ion-list>
 
-            <ion-item>
-                <ion-label floating>Item Price</ion-label>
-                <ion-input type="number" [(ngModel)]="payment.money"></ion-input>
-            </ion-item>
+            <ion-item *ngFor="let payment of UserPayments" [ngClass]="payment.paymentStatus">
 
-        </ion-list>
-        <button ion-button block color="primary" (click)="savePayment(payment)">Add Item</button>
-        <ion-list>
-            <ion-item-divider>Horror</ion-item-divider>
-            <ion-item *ngFor="let payment of paymentRef$| async" [ngClass]="payment.paymentStatus">
-                <span>{{payment.paymentDate}} {{payment.paymentDate}} {{payment.money}}</span>
+                <h2>
+                    <span *ngIf="payment.paymentStatus=='Pay'">
+                            Product Purchase 
+                          </span>
+
+                    <span *ngIf="payment.paymentStatus=='Add'">
+                            Added money
+                          </span>
+
+                </h2>
+                <p>{{payment.paymentDate}}</p>
+                <ion-note item-end>Rs. {{payment.money}}</ion-note>
+
+
             </ion-item>
+            <ion-item-divider>
+
+
+                <ion-note item-end>Rs. {{RemmoneyTotal}}</ion-note>
+            </ion-item-divider>
 
         </ion-list>
 

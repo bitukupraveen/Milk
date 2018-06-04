@@ -20,6 +20,10 @@ import { Payment } from '../../models/payment/payment.interface';
 export class PaymentPage {
   payment = {} as Payment;
   coustomer = {} as Coustomer;
+  AddmoneyTotal: number = 0;
+  PaymoneyTotal: number = 0;
+  RemmoneyTotal: number = 0;
+  public UserPayments: any = [];
   coustomerSubscription: Subscription;
   coustomerRef$: FirebaseObjectObservable<Coustomer>;
   payRef$: FirebaseObjectObservable<Payment>;
@@ -37,7 +41,26 @@ export class PaymentPage {
    
     this.paymentRef$ = this.database.list('payment');
   
-    
+    this.paymentRef$.subscribe(payment => {
+      payment.forEach(x => {
+        if (x.coustomerId == coustomerId) {
+        this.UserPayments.push(x)
+        }
+        if ((x.coustomerId == coustomerId) && (x.paymentStatus == "Add")) {
+          this.AddmoneyTotal += x.money;
+
+        }
+        if ((x.coustomerId == coustomerId) && (x.paymentStatus == "Pay")) {
+          this.PaymoneyTotal += x.money;
+
+        }
+        this.RemmoneyTotal = this.AddmoneyTotal- this.PaymoneyTotal
+      })
+
+    })
+    console.log(this.AddmoneyTotal)
+    console.log(this.PaymoneyTotal)
+    console.log(this.RemmoneyTotal)
     
   }
   

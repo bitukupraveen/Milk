@@ -115,5 +115,15 @@ export class DailyListPage {
        console.log(this.filteredData); */
 
   }
-
+  shownGroup = null;
+  toggleGroup(group) {
+    if (this.isGroupShown(group)) {
+        this.shownGroup = null;
+    } else {
+        this.shownGroup = group;
+    }
+};
+isGroupShown(group) {
+    return this.shownGroup === group;
+};
 }

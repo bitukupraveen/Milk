@@ -104,7 +104,7 @@ export class DailyPage {
  
         this.paymentRef$.subscribe(payment => {
           payment.forEach(x => {
-            if ((x.coustomerId == coustomerId) && (x.paymentDate == myDate)) {
+            if ((x.coustomerId == coustomerId) && (x.paymentDate == myDate) && (x.paymentStatus == "Pay")) {
               isItemExists = true;
               this.paymentkey = x.$key;
               itemTotal = x.money+ Number(item.itemQuantity) * Number(item.itemPrice);

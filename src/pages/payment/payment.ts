@@ -40,7 +40,6 @@ export class PaymentPage {
     });
    
     this.paymentRef$ = this.database.list('payment');
-  
     this.paymentRef$.subscribe(payment => {
       payment.forEach(x => {
         if (x.coustomerId == coustomerId) {
@@ -58,9 +57,7 @@ export class PaymentPage {
       })
 
     })
-    console.log(this.AddmoneyTotal)
-    console.log(this.PaymoneyTotal)
-    console.log(this.RemmoneyTotal)
+
     
   }
   
@@ -78,6 +75,7 @@ export class PaymentPage {
     money :Number(payment.money),
     paymentStatus :  "Add"
     });
+
     promise
         .then(_ => {
             console.log('Added payment');

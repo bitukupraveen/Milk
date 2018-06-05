@@ -24,27 +24,31 @@
 
 
 
-       <ion-list *ngFor="let month of  filteredData; let i = index">
+        <ion-list *ngFor="let month of  filteredData; let i = index" (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
 
             <ion-item-divider>
 
-                {{month}} </ion-item-divider>
-            <div *ngFor="let daily of daywise ">
-                <ion-item *ngIf="month==daily.todayDate;">
+                {{month}}
+                <ion-icon color="success" item-right [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            </ion-item-divider>
+            <div *ngIf="isGroupShown(i)">
+                <div *ngFor="let daily of daywise ">
+                    <ion-item *ngIf="month==daily.todayDate;">
 
 
-                    <h2>{{ daily.itemName }} </h2>
-                    <h3>{{ daily.itemVariant }}</h3>
-                    <p>{{ daily.itemPrice }} x {{ daily.itemQuantity }} = {{ daily.itemSubTotal }} </p>
-                    <button ion-button clear item-end><ion-icon name="trash"></ion-icon>
+                        <h2>{{ daily.itemName }} </h2>
+                        <h3>{{ daily.itemVariant }}</h3>
+                        <p>{{ daily.itemPrice }} x {{ daily.itemQuantity }} = {{ daily.itemSubTotal }} </p>
+                        <button ion-button clear item-end><ion-icon name="trash"></ion-icon>
                                             </button>
 
 
-                </ion-item>
+                    </ion-item>
+                </div>
             </div>
         </ion-list>
 
-       <!--  <ion-list >
+        <!--  <ion-list >
 
            
             <div *ngFor="let daily of daywise">

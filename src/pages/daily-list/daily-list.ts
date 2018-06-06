@@ -17,6 +17,7 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'page-daily-list',
   templateUrl: 'daily-list.html',
+  
 })
 export class DailyListPage {
   coustomer = {} as Coustomer;

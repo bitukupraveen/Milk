@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+//import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 import { MyApp } from './app.component';
 import {AngularFireModule} from 'angularfire2';
@@ -31,7 +32,9 @@ import { AuthProvider } from '../providers/auth/auth';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+   // { provide: LocationStrategy,
+   //useClass: PathLocationStrategy}
   ]
 })
 export class AppModule {}

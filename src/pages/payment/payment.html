@@ -33,7 +33,7 @@
 
             <ion-item *ngFor="let payment of UserPayments" [ngClass]="payment.paymentStatus">
 
-                <h2>
+                <h3>
                     <span *ngIf="payment.paymentStatus=='Pay'">
                             Product Purchase 
                           </span>
@@ -42,16 +42,37 @@
                             Added money
                           </span>
 
-                </h2>
+                </h3>
                 <p>{{payment.paymentDate}}</p>
-                <ion-note item-end>Rs. {{payment.money}}</ion-note>
+                <ion-note item-end><i class="fa fa-rupee"></i> {{payment.money}}
+
+                </ion-note>
 
 
             </ion-item>
-            <ion-item-divider>
+            <ion-item-divider *ngIf="RemmoneyTotal<=0" class="Pending">
+                <h2>
+                    Pending
+                </h2>
 
+                <ion-note item-end>
+                    <h2>
 
-                <ion-note item-end>Rs. {{RemmoneyTotal}}</ion-note>
+                        <i class="fa fa-rupee"></i> {{RemmoneyTotal}}
+                    </h2>
+                </ion-note>
+            </ion-item-divider>
+
+            <ion-item-divider *ngIf="RemmoneyTotal>=0" class="Advance">
+
+                <h2>
+                    Advance
+                </h2>
+                <ion-note item-end>
+                    <h2>
+                        <i class="fa fa-rupee"></i> {{RemmoneyTotal}}
+                    </h2>
+                </ion-note>
             </ion-item-divider>
 
         </ion-list>

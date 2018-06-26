@@ -1,32 +1,33 @@
-
 <ion-header>
 
-  <ion-navbar>
-      <button ion-button menuToggle>
+    <ion-navbar>
+        <button ion-button menuToggle>
     <ion-icon name="menu"></ion-icon>
   </button>
-      <ion-title>{{coustomer.Name}}</ion-title>
-  </ion-navbar>
+        <ion-title>{{coustomer.Name}}</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
-      <ion-item>
-          <ion-label floating> Name</ion-label>
-          <ion-input type="text" [(ngModel)]="coustomer.Name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating> Number</ion-label>
-        <ion-input type="number" [(ngModel)]="coustomer.Number"></ion-input>
-    </ion-item>
-      <ion-item>
-          <ion-label floating> Description</ion-label>
-          <ion-input type="text" [(ngModel)]="coustomer.Description"></ion-input>
-      </ion-item>
+    <ion-grid fixed>
+        <ion-list>
+            <ion-item>
+                <ion-label floating> Name</ion-label>
+                <ion-input type="text" [(ngModel)]="coustomer.Name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating> Number</ion-label>
+                <ion-input type="number" [(ngModel)]="coustomer.Number"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating> Description</ion-label>
+                <ion-input type="text" [(ngModel)]="coustomer.Description"></ion-input>
+            </ion-item>
 
-      
-  </ion-list>
-  <button ion-button block color="primary" (click)="Editcoustomer(coustomer)">Update Item</button>
+
+        </ion-list>
+        <button ion-button block color="primary" (click)="Editcoustomer(coustomer)">Update Item</button>
+    </ion-grid>
 </ion-content>

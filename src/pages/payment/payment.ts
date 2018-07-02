@@ -4,7 +4,7 @@ import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable }
 import { Subscription } from 'rxjs/Subscription';
 import { Coustomer } from '../../models/coustomer/coustomer.interface';
 import { Payment } from '../../models/payment/payment.interface';
-
+import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the PaymentPage page.
  *
@@ -30,7 +30,8 @@ export class PaymentPage {
   paymentRef$ : FirebaseListObservable<Payment[]>;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private database: AngularFireDatabase
+    private database: AngularFireDatabase,
+    private alertCtrl: AlertController
   ) {
 
     const coustomerId = this.navParams.get('coustomerId');
@@ -89,6 +90,38 @@ export class PaymentPage {
 }
   ionViewDidLoad() {
     console.log('ionViewDidLoad PaymentPage');
+  }
+
+  presentPrompt() {
+    let alert = this.alertCtrl.create({
+      title: 'Add Money',
+      inputs: [
+        {
+          type: "number",
+          name: 'money',
+          placeholder: 'Money'
+        },
+       
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Add',
+          handler: data => {
+            if (data.money) {
+              this.savePayment(data)
+            } 
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

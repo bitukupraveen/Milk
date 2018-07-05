@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActionSheetController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {Coustomer} from '../../models/coustomer/coustomer.interface';
+import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the CustomerListPage page.
@@ -22,7 +23,8 @@ export class CustomerListPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private database: AngularFireDatabase,
-              private actionSheetCtrl: ActionSheetController
+              private actionSheetCtrl: ActionSheetController,
+              public alertCtrl: AlertController
               ) {
     this.coustomerRef$ = this.database.list('coustomers');
   }
@@ -62,10 +64,35 @@ export class CustomerListPage {
                 role: 'destructive',
                 handler: () => {
                     console.log('Delete clicked');
-                    const promise =  this.coustomerRef$.remove(coustomer.$key);
-                    promise
+                   // const promise =  this.coustomerRef$.remove(coustomer.$key);
+                    const alert = this.alertCtrl.create({
+                        title: `${coustomer.Name}`,
+                        subTitle: 'Are you sure you want to delete this user!',
+                        buttons: [ 
+                            {
+                                text:'OK',
+                                role: 'destructive',
+                                handler: () => {
+                                    const promise =  this.coustomerRef$.remove(coustomer.$key);
+                                      promise
                         .then(_ => console.log('Deleted Coustomer'))
-                        .catch(err => console.log(err, 'Error Deleted Coustomer'));
+                         .catch(err => console.log(err, 'Error Deleted Coustomer'));
+
+                                }
+                            },
+                            {
+                                text: 'Cancel',
+                                role: 'cancel',
+                                handler: () => {
+                                    console.log('Cancel clicked');
+                                }
+                            }
+                        ]
+                      });
+                      alert.present();
+                    // promise
+                    //     .then(_ => console.log('Deleted Coustomer'))
+                    //     .catch(err => console.log(err, 'Error Deleted Coustomer'));
                 }
             },
             {
@@ -79,11 +106,21 @@ export class CustomerListPage {
     }).present();
 }
 
+showAlert() {
+    const alert = this.alertCtrl.create({
+      title: 'New Friend!',
+      subTitle: 'Your friend, Obi wan Kenobi, just accepted your friend request!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad CustomerListPage');
   }
   goToAddCoustomerPage() {
     console.log("Working");
+    
         this.navCtrl.push('AddCoustomerPage');
     }
 }

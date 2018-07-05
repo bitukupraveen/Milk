@@ -20,9 +20,9 @@ import { AlertController } from 'ionic-angular';
 export class PaymentPage {
   payment = {} as Payment;
   coustomer = {} as Coustomer;
-  AddmoneyTotal: number = 0;
-  PaymoneyTotal: number = 0;
-  RemmoneyTotal: number = 0;
+  // AddmoneyTotal: number = 0;
+  // PaymoneyTotal: number = 0;
+  // RemmoneyTotal: number = 0;
   public UserPayments: any = [];
   coustomerSubscription: Subscription;
   coustomerRef$: FirebaseObjectObservable<Coustomer>;
@@ -46,15 +46,15 @@ export class PaymentPage {
         if (x.coustomerId == coustomerId) {
         this.UserPayments.push(x)
         }
-        if ((x.coustomerId == coustomerId) && (x.paymentStatus == "Add")) {
-          this.AddmoneyTotal += x.money;
+        // if ((x.coustomerId == coustomerId) && (x.paymentStatus == "Add")) {
+        //   this.AddmoneyTotal += x.money;
 
-        }
-        if ((x.coustomerId == coustomerId) && (x.paymentStatus == "Pay")) {
-          this.PaymoneyTotal += x.money;
+        // }
+        // if ((x.coustomerId == coustomerId) && (x.paymentStatus == "Pay")) {
+        //   this.PaymoneyTotal += x.money;
 
-        }
-        this.RemmoneyTotal = this.AddmoneyTotal- this.PaymoneyTotal
+        // }
+        // this.RemmoneyTotal = this.AddmoneyTotal- this.PaymoneyTotal
       })
 
     })
@@ -76,7 +76,10 @@ export class PaymentPage {
     money :Number(payment.money),
     paymentStatus :  "Add"
     });
-
+    this.coustomerRef$.update({
+      Wallet: this.coustomer.Wallet + Number(payment.money),
+     
+  });
     promise
         .then(_ => {
             console.log('Added payment');

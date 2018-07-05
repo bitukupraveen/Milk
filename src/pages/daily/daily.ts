@@ -43,6 +43,7 @@ export class DailyPage {
     this.coustomerSubscription = this.coustomerRef$.subscribe(coustomer => {
       this.coustomer = coustomer;
     })
+
     var currentDate = new Date()
     var day = currentDate.getDate()
     var month = currentDate.getMonth() + 1
@@ -101,6 +102,7 @@ export class DailyPage {
         console.log('Added Item');
         var isItemExists = false;
         var itemTotal = 0;
+        var PayTotal =0;
  
         this.paymentRef$.subscribe(payment => {
           payment.forEach(x => {
@@ -109,16 +111,25 @@ export class DailyPage {
               this.paymentkey = x.$key;
               itemTotal = x.money+ Number(item.itemQuantity) * Number(item.itemPrice);
 
+
             }
+
+
 
           })
 
         })
-console.log(isItemExists)
+        PayTotal =Number(item.itemQuantity) * Number(item.itemPrice)
+        
+        this.coustomerRef$.update({
+          Wallet: this.coustomer.Wallet - PayTotal,
+         
+      });
+
         if (!isItemExists) {
            itemTotal = 0;
           itemTotal = Number(item.itemQuantity) * Number(item.itemPrice);
-          console.log('new');
+         // console.log('new');
           this.paymentRef$.push({
             coustomerId: coustomerId,
             paymentDate: myDate,
@@ -126,7 +137,7 @@ console.log(isItemExists)
             paymentStatus: "Pay"
           });
         } else {
-          console.log('old');
+         // console.log('old');
           this.database.object(`payment/${this.paymentkey}`).update({
             coustomerId: coustomerId,
             paymentDate: myDate,

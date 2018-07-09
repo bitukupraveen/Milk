@@ -22,6 +22,7 @@ export class HomePage {
   coustomerRef$: FirebaseListObservable<Coustomer[]>;
   itemsRef$: FirebaseListObservable<Item[]>;
   paymentRef$ : FirebaseListObservable<Payment[]>;
+  public today : number 	= Date.now();
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private database: AngularFireDatabase

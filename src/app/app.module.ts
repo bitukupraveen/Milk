@@ -12,10 +12,12 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
 
+import { GreatPipe } from '../pipes/great/great'
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    GreatPipe
   ],
   imports: [
     BrowserModule,

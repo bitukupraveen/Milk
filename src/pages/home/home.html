@@ -74,7 +74,9 @@
                 </ion-avatar>
                 <h2>Mr. Potato Head</h2>
                 <p>You're not turning me into a Mashed Potato.</p>
-                <ion-note item-end>5:47 am</ion-note>
+                <ion-note item-end>
+                    <p>Today is {{ today | date: 'shortDate' }}</p>
+                </ion-note>
             </ion-item>
         </ion-list>
     </ion-grid>

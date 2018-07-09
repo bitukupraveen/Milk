@@ -21,12 +21,14 @@
 </ion-header>
 
 
-<ion-content padding>
-    <ion-list>
-        <ion-item (click)="selectItem(item)" *ngFor="let item of itemsRef$ | async">
-            <h2>{{item.itemName}}</h2>
-            <p>{{item.itemVariant}}</p>
-            <ion-badge item-end>Rs. {{item.itemPrice}}</ion-badge>
-        </ion-item>
-    </ion-list>
+<ion-content class="content-bg" padding class="content-bg">
+    <ion-grid fixed>
+        <ion-list>
+            <ion-item (click)="selectItem(item)" *ngFor="let item of itemsRef$ | async">
+                <h2>{{item.itemName}}</h2>
+                <p>{{item.itemVariant}}</p>
+                <ion-badge item-end>Rs. {{item.itemPrice}}</ion-badge>
+            </ion-item>
+        </ion-list>
+    </ion-grid>
 </ion-content>

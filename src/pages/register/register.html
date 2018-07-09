@@ -7,28 +7,30 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-item>
-        <ion-label floating>Email Address</ion-label>
-        <ion-input type="text" [(ngModel)]="user.email"></ion-input>
-    </ion-item>
+<ion-content class="content-bg" padding>
+    <ion-grid fixed>
+        <ion-item>
+            <ion-label floating>Email Address</ion-label>
+            <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+        </ion-item>
 
-    <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-    </ion-item>
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+        </ion-item>
 
-    <ion-grid>
-        <ion-row>
-            <ion-col>
-                <button ion-button block color="light">Cancel</button>
-            </ion-col>
-            <ion-col>
-                <button ion-button block (click)="register(user)">Register</button>
-            </ion-col>
-        </ion-row>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <button ion-button block color="light">Cancel</button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button block (click)="register(user)">Register</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+
+        <p ion-text color="danger">{{error}}</p>
     </ion-grid>
-
-
-    <p ion-text color="danger">{{error}}</p>
 </ion-content>

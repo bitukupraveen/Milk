@@ -39,6 +39,7 @@ export class AddCoustomerPage {
         Name: coustomer.Name,
         Description: coustomer.Description,
         Number: Number(coustomer.Number),
+        Wallet : 0,
     });
     promise
         .then(_ => {

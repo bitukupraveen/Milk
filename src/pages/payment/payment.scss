@@ -1,0 +1,16 @@
+page-payment {
+    ion-item.item.item-block.item-md.Add,
+    ion-item.item.item-block.item-md.Add .note-md {
+        color: #488aff
+    }
+    ion-item.item.item-block.item-md.Pay,
+    ion-item.item.item-block.item-md.Pay .note-md {
+        color: #f53d3d;
+    }
+    .item-divider-md.Advance h2 {
+        color: #488aff;
+    }
+    .item-divider-md.Pending h2 {
+        color: #f53d3d;
+    }
+}

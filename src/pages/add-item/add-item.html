@@ -18,26 +18,30 @@
 
 <ion-content class="content-bg" padding>
     <ion-grid fixed>
-        <ion-list>
-            <ion-item>
-                <ion-label floating>Item Name</ion-label>
-                <ion-input type="text" [(ngModel)]="item.itemName"></ion-input>
-            </ion-item>
+        <ion-row>
+            <ion-col col-md-6 offset-md-3>
+                <ion-list>
+                    <ion-item>
+                        <ion-label floating>Item Name</ion-label>
+                        <ion-input type="text" [(ngModel)]="item.itemName"></ion-input>
+                    </ion-item>
 
-            <ion-item>
-                <ion-label floating>Item Variant</ion-label>
-                <ion-input type="text" [(ngModel)]="item.itemVariant"></ion-input>
-            </ion-item>
+                    <ion-item>
+                        <ion-label floating>Item Variant</ion-label>
+                        <ion-input type="text" [(ngModel)]="item.itemVariant"></ion-input>
+                    </ion-item>
 
-            <ion-item>
-                <ion-label floating>Item Price</ion-label>
-                <ion-input type="number" [(ngModel)]="item.itemPrice"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label floating>Item Quantity</ion-label>
-                <ion-input type="number" [(ngModel)]="item.itemQuantity"></ion-input>
-            </ion-item>
-        </ion-list>
-        <button ion-button block color="primary" (click)="saveItem(item)">Add Item</button>
+                    <ion-item>
+                        <ion-label floating>Item Price</ion-label>
+                        <ion-input type="number" [(ngModel)]="item.itemPrice"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Item Quantity</ion-label>
+                        <ion-input type="number" [(ngModel)]="item.itemQuantity"></ion-input>
+                    </ion-item>
+                </ion-list>
+                <button ion-button block color="primary" (click)="saveItem(item)">Add Item</button>
+            </ion-col>
+        </ion-row>
     </ion-grid>
 </ion-content>

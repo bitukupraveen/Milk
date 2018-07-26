@@ -23,6 +23,13 @@
 
 <ion-content class="content-bg" padding class="content-bg">
     <ion-grid fixed>
+        <ion-card>
+
+            <ion-card-header>
+                Explore Nearby
+            </ion-card-header>
+
+        </ion-card>
         <ion-list>
             <ion-item (click)="selectItem(item)" *ngFor="let item of itemsRef$ | async">
                 <h2>{{item.itemName}}</h2>
